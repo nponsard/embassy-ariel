@@ -23,7 +23,14 @@ flavors = [
 ]
 
 [package.metadata.docs.rs]
-features = ["nrf52840", "time", "defmt", "unstable-pac", "gpiote", "time-driver-rtc1"]
+features = [
+    "nrf52840",
+    "time",
+    "defmt",
+    "unstable-pac",
+    "gpiote",
+    "time-driver-rtc1",
+]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [features]
@@ -35,7 +42,13 @@ rt = ["nrf-pac/rt"]
 time = ["dep:embassy-time", "embassy-embedded-hal/time"]
 
 ## Enable defmt
-defmt = ["dep:defmt", "embassy-hal-internal/defmt", "embassy-sync/defmt", "embassy-usb-driver/defmt", "embassy-embedded-hal/defmt"]
+defmt = [
+    "dep:defmt",
+    "embassy-hal-internal/defmt",
+    "embassy-sync/defmt",
+    "embassy-usb-driver/defmt",
+    "embassy-embedded-hal/defmt",
+]
 
 ## Reexport the PAC for the currently enabled chip at `embassy_nrf::pac` (unstable)
 unstable-pac = []
@@ -122,7 +135,12 @@ _nrf52 = ["_ppi"]
 _nrf51 = ["_ppi"]
 _nrf91 = []
 
-_time-driver = ["dep:embassy-time-driver", "embassy-time-driver?/tick-hz-32_768", "dep:embassy-time-queue-utils", "embassy-embedded-hal/time"]
+_time-driver = [
+    "dep:embassy-time-driver",
+    "embassy-time-driver?/tick-hz-32_768",
+    "dep:embassy-time-queue-utils",
+    "embassy-embedded-hal/time",
+]
 
 # trustzone state.
 _s = []
@@ -140,15 +158,20 @@ _nrf52832_anomaly_109 = []
 _multi_wdt = []
 
 [dependencies]
-embassy-time-driver = { version = "0.2", path = "../embassy-time-driver", optional = true }
-embassy-time-queue-utils = { version = "0.1", path = "../embassy-time-queue-utils", optional = true }
-embassy-time = { version = "0.4.0", path = "../embassy-time", optional = true }
-embassy-sync = { version = "0.7.0", path = "../embassy-sync" }
-embassy-hal-internal = { version = "0.2.0", path = "../embassy-hal-internal", features = ["cortex-m", "prio-bits-3"] }
-embassy-embedded-hal = { version = "0.3.0", path = "../embassy-embedded-hal", default-features = false }
-embassy-usb-driver = { version = "0.1.0", path = "../embassy-usb-driver" }
+embassy-time-driver = { version = "0.2", optional = true }
+embassy-time-queue-utils = { version = "0.1", optional = true }
+embassy-time = { version = "0.4.0", optional = true }
+embassy-sync = { version = "0.6.2" }
+embassy-hal-internal = { version = "0.2.0", features = [
+    "cortex-m",
+    "prio-bits-3",
+] }
+embassy-embedded-hal = { version = "0.3.0", default-features = false }
+embassy-usb-driver = { version = "0.1.0" }
 
-embedded-hal-02 = { package = "embedded-hal", version = "0.2.6", features = ["unproven"] }
+embedded-hal-02 = { package = "embedded-hal", version = "0.2.6", features = [
+    "unproven",
+] }
 embedded-hal-1 = { package = "embedded-hal", version = "1.0" }
 embedded-hal-async = { version = "1.0" }
 embedded-io = { version = "0.6.0" }
@@ -170,4 +193,4 @@ embedded-storage = "0.3.1"
 embedded-storage-async = "0.4.1"
 cfg-if = "1.0.0"
 document-features = "0.2.7"
-optfield = { version = "0.4.0", optional = true}
+optfield = { version = "0.4.0", optional = true }
